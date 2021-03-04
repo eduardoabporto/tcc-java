@@ -18,7 +18,7 @@ public class OrdemServico {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "id_cliente", referencedColumnName="ID")
     private  Cliente cliente;
 
     @Column
