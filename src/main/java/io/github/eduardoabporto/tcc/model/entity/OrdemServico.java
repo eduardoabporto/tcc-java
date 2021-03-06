@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -13,6 +14,9 @@ public class OrdemServico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, length = 100)
+    private String assunto;
 
     @Column(nullable = false, length = 500)
     private String descricao;
@@ -26,5 +30,26 @@ public class OrdemServico {
 
     @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate data;
+    private Date data;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaInicial;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaFinal;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaTrab;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaTrasl;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaDesc;
+
 }

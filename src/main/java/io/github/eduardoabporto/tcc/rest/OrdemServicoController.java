@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ordens-servicos")
+@RequestMapping("/api/ordem-servico")
 @RequiredArgsConstructor
 public class OrdemServicoController {
 
@@ -27,7 +25,7 @@ public class OrdemServicoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrdemServico salvar(@RequestBody @Valid OrdemServicoDTO dto ){
-        LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        //LocalDate data = LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Integer idCliente = dto.getIdCliente();
 
         Cliente cliente =
@@ -39,8 +37,14 @@ public class OrdemServicoController {
 
 
         OrdemServico OrdemServico = new OrdemServico();
+        OrdemServico.setAssunto(dto.getAssunto());
         OrdemServico.setDescricao(dto.getDescricao());
-        OrdemServico.setData( data );
+        OrdemServico.setData(dto.getData());
+        OrdemServico.setHoraInicial(dto.getHoraInicial());
+        OrdemServico.setHoraFinal(dto.getHoraFinal());
+        OrdemServico.setHoraTrab(dto.getHoraTrab());
+        OrdemServico.setHoraTrab(dto.getHoraTrasl());
+        OrdemServico.setHoraTrab(dto.getHoraDesc());
         OrdemServico.setCliente(cliente);
 
         return repository.save(OrdemServico);
