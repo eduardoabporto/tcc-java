@@ -2,6 +2,7 @@ package io.github.eduardoabporto.tcc.rest;
 
 import io.github.eduardoabporto.tcc.exception.UsuarioCadastradoException;
 import io.github.eduardoabporto.tcc.model.entity.Usuario;
+import io.github.eduardoabporto.tcc.model.repository.UsuarioRepository;
 import io.github.eduardoabporto.tcc.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,8 @@ import javax.validation.Valid;
 public class UsuarioController {
 
     private final UsuarioService service;
+    private final UsuarioRepository repository;
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -25,5 +28,12 @@ public class UsuarioController {
         }catch (UsuarioCadastradoException e){
             throw new ResponseStatusException( HttpStatus.BAD_REQUEST, e.getMessage() );
         }
+    }
+
+    @GetMapping("{id}")
+    public Usuario acharPorId(@PathVariable Integer id){
+        return  repository
+                .findById(id)
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuãrio não Encontrado"));
     }
 }

@@ -4,53 +4,27 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Data
-public class OrdemServico {
+public class Projeto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 100)
-    private String assunto;
-
-    @Column(nullable = false, length = 500)
-    private String descricao;
-
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private  Empresa empresa;
+    private String nome;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
 
-    @ManyToOne
-    @JoinColumn(name = "projeto_id")
-    private  Projeto projeto;
-
-    @Column
-    private LocalDate dataServico;
-
     @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date data;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaInicial;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaFinal;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaTrab;
 
     @Column
     @JsonFormat(pattern = "H[H]:mm:ss")
@@ -60,4 +34,6 @@ public class OrdemServico {
     @JsonFormat(pattern = "H[H]:mm:ss")
     private String horaDesc;
 
+    @Column
+    private BigDecimal valorHora;
 }

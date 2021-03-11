@@ -11,7 +11,10 @@ import java.util.List;
 
 public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Integer> {
 
-    @Query(" select s from OrdemServico s join s.cliente c where upper( c.nome ) like upper( :nome )  and MONTH(s.data) =:mes   ")
-    List<OrdemServico> findByNomeClienteAndMes(
-            @Param("nome") String nome, @Param("mes") Integer mes);
+    @Query(" select s from OrdemServico s "+
+            "join s.cliente c  "+
+            "where " +
+            "upper( c.nome ) like upper( :nome ) ")
+    List<OrdemServico> findByNomeCliente(@Param("nome") String nome);
+
 }

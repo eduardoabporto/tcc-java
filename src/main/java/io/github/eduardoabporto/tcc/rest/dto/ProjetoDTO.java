@@ -9,35 +9,21 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class OrdemServicoDTO {
+public class ProjetoDTO {
     @NotEmpty(message = "{campo.assunto.obrigatorio}")
-    private String assunto;
-
-    @NotEmpty(message = "{campo.descricao.obrigatorio}")
-    private String descricao;
+    private String nome;
 
  //   @NotEmpty(message = "{campo.data.obrigatorio}")
     private Date data;
-
-    @NotEmpty(message = "{campo.data.obrigatorio}")
-    private String horaInicial;
-
-    @NotEmpty(message = "{campo.data.obrigatorio}")
-    private String horaFinal;
-
-    private String horaTrab;
 
     private String horaTrasl;
 
     private String horaDesc;
 
-    @NotNull(message = "{campo.empresa.obrigatorio}")
-    private Integer idEmpresa;
+    @NotEmpty(message = "{campo.valorHora.obrigatorio}")
+    private String valorHora;
 
     @NotNull(message = "{campo.cliente.obrigatorio}")
     private Integer idCliente;
-
-    @NotNull(message = "{campo.projeto.obrigatorio}")
-    private Integer idProjeto;
 
 }

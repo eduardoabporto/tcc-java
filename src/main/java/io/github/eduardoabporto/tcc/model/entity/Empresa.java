@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cliente {
+public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,5 +74,4 @@ public class Cliente {
     public void prePersist(){
         setDataCadastro(LocalDate.now());
     }
-
 }
