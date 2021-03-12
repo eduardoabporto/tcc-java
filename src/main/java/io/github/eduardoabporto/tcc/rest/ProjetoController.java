@@ -54,11 +54,31 @@ public class ProjetoController {
         return projetoRepository.findByNomeCliente("%" + nome + "%");
     }
 
+    @GetMapping("{id}")
+    public Projeto acharPorId(@PathVariable Integer id){
+        return projetoRepository
+                .findById(id)
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
+    }
+
+
     @GetMapping("/form/")
     public List<Projeto> buscaCliente(
             @RequestParam(value = "numCliente" , required = false, defaultValue = "") String numCliente
     ) {
         return projetoRepository.findByNumCliente(Integer.parseInt(numCliente));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Integer id){
+        projetoRepository
+                .findById(id)
+                .map(projeto -> {
+                    projetoRepository.delete(projeto);
+                    return Void.TYPE;
+                })
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Projeto não Encontrado"));
     }
 
 }
