@@ -81,14 +81,12 @@ public class OrdemServicoController {
         return repository.findByNomeCliente("%" + nome + "%");
     }
 
-
     @GetMapping("{id}")
     public OrdemServico acharPorId(@PathVariable Integer id){
         return repository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
     }
-
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -33,6 +33,10 @@ public class OrdemServico {
     @JoinColumn(name = "projeto_id")
     private  Projeto projeto;
 
+    @ManyToOne
+    @JoinColumn(name = "recurso_id")
+    private  Recurso recurso;
+
     @Column
     private LocalDate dataServico;
 
