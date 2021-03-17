@@ -13,7 +13,7 @@ public class ProjetoDTO {
     @NotEmpty(message = "{campo.assunto.obrigatorio}")
     private String nome;
 
- //   @NotEmpty(message = "{campo.data.obrigatorio}")
+    //   @NotEmpty(message = "{campo.data.obrigatorio}")
     private Date data;
 
     private String horaTrasl;

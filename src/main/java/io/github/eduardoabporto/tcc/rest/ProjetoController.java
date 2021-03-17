@@ -61,6 +61,12 @@ public class ProjetoController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
     }
 
+    @GetMapping("/hora-projeto/")
+    public List<Projeto> buscaProjeto(
+            @RequestParam(value = "numProjeto" , required = false, defaultValue = "") String numProjeto
+    ) {
+        return projetoRepository.findByhoraProjeto(Integer.parseInt(numProjeto));
+    }
 
     @GetMapping("/form/")
     public List<Projeto> buscaCliente(
@@ -77,6 +83,18 @@ public class ProjetoController {
                 .map(projeto -> {
                     projetoRepository.delete(projeto);
                     return Void.TYPE;
+                })
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Projeto não Encontrado"));
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable Integer id, @RequestBody Projeto projetoAtualizado){
+        projetoRepository
+                .findById(id)
+                .map(projeto -> {
+                    projetoAtualizado.setId(projeto.getId());
+                    return projetoRepository.save(projetoAtualizado);
                 })
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Projeto não Encontrado"));
     }

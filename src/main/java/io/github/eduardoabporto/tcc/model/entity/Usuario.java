@@ -23,7 +23,11 @@ public class Usuario {
     @NotEmpty(message = "{campo.login.obrigatorio}")
     private String username;
 
-    @Column(name = "senha")
+    @Column(name = "password")
     @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String password;
+
+    @Column(length = 150)
+    private String nome;
+
 }

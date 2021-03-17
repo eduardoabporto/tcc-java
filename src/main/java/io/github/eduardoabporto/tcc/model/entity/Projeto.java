@@ -1,7 +1,10 @@
 package io.github.eduardoabporto.tcc.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +12,9 @@ import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Projeto {
 
     @Id
@@ -23,7 +29,7 @@ public class Projeto {
     private  Cliente cliente;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date data;
 
     @Column

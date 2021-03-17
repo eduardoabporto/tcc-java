@@ -60,16 +60,17 @@ public class OrdemServicoController {
 
         OrdemServico OrdemServico = new OrdemServico();
         OrdemServico.setAssunto(dto.getAssunto());
-        OrdemServico.setDescricao(dto.getDescricao());
         OrdemServico.setData(dto.getData());
+        OrdemServico.setDescricao(dto.getDescricao());
         OrdemServico.setHoraInicial(dto.getHoraInicial());
         OrdemServico.setHoraFinal(dto.getHoraFinal());
+        OrdemServico.setHoraTrasl(dto.getHoraTrasl());
+        OrdemServico.setHoraDesc(dto.getHoraDesc());
         OrdemServico.setHoraTrab(dto.getHoraTrab());
-        OrdemServico.setHoraTrab(dto.getHoraTrasl());
-        OrdemServico.setHoraTrab(dto.getHoraDesc());
         OrdemServico.setEmpresa(empresa);
         OrdemServico.setCliente(cliente);
         OrdemServico.setProjeto(projeto);
+        OrdemServico.setUserLog(dto.getUserLog());
 
         return repository.save(OrdemServico);
     }
@@ -112,3 +113,4 @@ public class OrdemServicoController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
     }
 }
+

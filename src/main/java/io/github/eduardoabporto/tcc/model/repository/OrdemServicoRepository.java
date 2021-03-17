@@ -17,4 +17,5 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
             "upper( c.nome ) like upper( :nome ) ")
     List<OrdemServico> findByNomeCliente(@Param("nome") String nome);
 
+
 }

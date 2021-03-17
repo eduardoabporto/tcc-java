@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -18,8 +17,32 @@ public class OrdemServico {
     @Column(nullable = false, length = 100)
     private String assunto;
 
+    @Column
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate data;
+
     @Column(nullable = false, length = 500)
     private String descricao;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaInicial;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaFinal;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaTrasl;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaDesc;
+
+    @Column
+    @JsonFormat(pattern = "H[H]:mm:ss")
+    private String horaTrab;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -33,35 +56,12 @@ public class OrdemServico {
     @JoinColumn(name = "projeto_id")
     private  Projeto projeto;
 
-    @ManyToOne
-    @JoinColumn(name = "recurso_id")
-    private  Recurso recurso;
+    private String userLog;
 
-    @Column
-    private LocalDate dataServico;
 
-    @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date data;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaInicial;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaFinal;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaTrab;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaTrasl;
-
-    @Column
-    @JsonFormat(pattern = "H[H]:mm:ss")
-    private String horaDesc;
+    @PrePersist
+    public void prePersist(){
+        setData(LocalDate.now());
+    }
 
 }

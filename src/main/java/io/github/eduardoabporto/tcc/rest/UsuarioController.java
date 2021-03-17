@@ -10,15 +10,28 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/usuario")
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService service;
     private final UsuarioRepository repository;
 
+
+    @GetMapping
+    public List<Usuario> obterTodos(){
+        return repository.findAll();
+    }
+
+    @GetMapping("/form/")
+    public List<Usuario> buscaUsuario(
+            @RequestParam(value = "nomeUser" , required = false, defaultValue = "") String nomeUser
+    ) {
+        return repository.findByNumCliente(nomeUser);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -35,5 +48,17 @@ public class UsuarioController {
         return  repository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuãrio não Encontrado"));
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable Integer id, @RequestBody Usuario UsuarioAtualizado){
+        repository
+                .findById(id)
+                .map(usuario -> {
+                    UsuarioAtualizado.setId(usuario.getId());
+                    return repository.save(UsuarioAtualizado);
+                })
+                .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Empresa não Encontrado"));
     }
 }

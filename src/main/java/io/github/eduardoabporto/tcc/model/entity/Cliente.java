@@ -27,14 +27,14 @@ public class Cliente {
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @Column(nullable = false, length = 15)
+    @Column(unique = true, nullable = false, length = 15)
     @NotNull
     @NotEmpty(message = "{campo.cnpj.obrigatorio}")
     @CNPJ(message = "{campo.cnpj.invalido}")
     private String cnpj;
 
     @Column(updatable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dataCadastro;
 
     @Column(length = 70)

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -13,11 +13,11 @@ public class OrdemServicoDTO {
     @NotEmpty(message = "{campo.assunto.obrigatorio}")
     private String assunto;
 
+    //   @NotEmpty(message = "{campo.data.obrigatorio}")
+    private LocalDate data;
+
     @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
-
- //   @NotEmpty(message = "{campo.data.obrigatorio}")
-    private Date data;
 
     @NotEmpty(message = "{campo.data.obrigatorio}")
     private String horaInicial;
@@ -25,11 +25,11 @@ public class OrdemServicoDTO {
     @NotEmpty(message = "{campo.data.obrigatorio}")
     private String horaFinal;
 
-    private String horaTrab;
-
     private String horaTrasl;
 
     private String horaDesc;
+
+    private String horaTrab;
 
     @NotNull(message = "{campo.empresa.obrigatorio}")
     private Integer idEmpresa;
@@ -39,5 +39,7 @@ public class OrdemServicoDTO {
 
     @NotNull(message = "{campo.projeto.obrigatorio}")
     private Integer idProjeto;
+
+    private String userLog;
 
 }
