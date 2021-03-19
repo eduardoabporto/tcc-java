@@ -9,11 +9,15 @@ import io.github.eduardoabporto.tcc.model.repository.EmpresaRepository;
 import io.github.eduardoabporto.tcc.model.repository.OrdemServicoRepository;
 import io.github.eduardoabporto.tcc.model.repository.ProjetoRepository;
 import io.github.eduardoabporto.tcc.rest.dto.OrdemServicoDTO;
+import io.github.eduardoabporto.tcc.service.ServiceRelatorio;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdemServicoController {
 
+    private final ServiceRelatorio serviceRelatorio;
     private final EmpresaRepository empresaRepository;
     private final ClienteRepository clienteRepository;
     private final OrdemServicoRepository repository;
@@ -71,6 +76,7 @@ public class OrdemServicoController {
         OrdemServico.setCliente(cliente);
         OrdemServico.setProjeto(projeto);
         OrdemServico.setUserLog(dto.getUserLog());
+        OrdemServico.setAtendimento(dto.getAtendimento());
 
         return repository.save(OrdemServico);
     }
@@ -111,6 +117,27 @@ public class OrdemServicoController {
                     return repository.save(ordemServicoAtualizado);
                 })
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
+    }
+
+    @GetMapping(value="/relatorio", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-ordens-servicos",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value="/relatorio/minhas-oss", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorioMinhasOss(HttpServletRequest request) throws Exception {
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-minha-os",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
     }
 }
 

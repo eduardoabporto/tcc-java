@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -19,7 +19,7 @@ public class OrdemServico {
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate data;
+    private Date data;
 
     @Column(nullable = false, length = 500)
     private String descricao;
@@ -58,10 +58,6 @@ public class OrdemServico {
 
     private String userLog;
 
-
-    @PrePersist
-    public void prePersist(){
-        setData(LocalDate.now());
-    }
+    private String atendimento;
 
 }

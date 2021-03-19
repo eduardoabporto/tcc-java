@@ -5,12 +5,16 @@ import io.github.eduardoabporto.tcc.model.entity.Projeto;
 import io.github.eduardoabporto.tcc.model.repository.ClienteRepository;
 import io.github.eduardoabporto.tcc.model.repository.ProjetoRepository;
 import io.github.eduardoabporto.tcc.rest.dto.ProjetoDTO;
+import io.github.eduardoabporto.tcc.service.ServiceRelatorio;
 import io.github.eduardoabporto.tcc.util.BigDecimalConverter;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjetoController {
 
+    private final ServiceRelatorio serviceRelatorio;
     private final ClienteRepository clienteRepository;
     private final ProjetoRepository projetoRepository;
     private final BigDecimalConverter bigDecimalConverter;
@@ -97,6 +102,16 @@ public class ProjetoController {
                     return projetoRepository.save(projetoAtualizado);
                 })
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Projeto não Encontrado"));
+    }
+
+    @GetMapping(value="/relatorio", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-projeto",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
     }
 
 }

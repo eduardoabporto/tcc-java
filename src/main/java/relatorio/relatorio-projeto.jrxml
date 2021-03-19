@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio-projetos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2371d157-fe06-4536-805b-5cd79e228340">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco TCC - OS"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT CLI.NOME, PRO.NOME as NOME_PRO, PRO.HORADESC, PRO.HORATRASL, PRO.VALORHORA 
+	FROM PROJETO PRO, CLIENTE CLI
+WHERE
+PRO.CLIENTE_ID = CLI.ID]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="nome_pro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_pro"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_pro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="projeto"/>
+	</field>
+	<field name="horadesc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="horadesc"/>
+		<property name="com.jaspersoft.studio.field.label" value="horadesc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="projeto"/>
+	</field>
+	<field name="horatrasl" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="horatrasl"/>
+		<property name="com.jaspersoft.studio.field.label" value="horatrasl"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="projeto"/>
+	</field>
+	<field name="valorhora" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="valorhora"/>
+		<property name="com.jaspersoft.studio.field.label" value="valorhora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="projeto"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="555" height="30" uuid="069ede87-13af-4467-9ee1-eb07598ac7ee"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Projetos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="3a31042f-752b-4575-bc09-dbc84e85e7e4"/>
+			</line>
+			<line>
+				<reportElement x="0" y="60" width="555" height="1" uuid="bd88de17-fc6e-41ca-9853-0df64f8e9355"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="7" width="555" height="33" backcolor="#BDBDBD" uuid="f2a8821e-8d79-4373-8ba7-0c24e23adbe7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="10" width="100" height="20" uuid="3b97546e-f8d4-4d26-8d6f-8569d3a1dd5d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="edef8315-3d61-43e4-9692-ffe2d5601239"/>
+				</reportElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="10" width="100" height="20" uuid="818cbf66-9ed5-40d8-b0c8-58a662209d52">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="606403c6-95c4-40b4-a2e3-56f5a8fb7ccd"/>
+				</reportElement>
+				<text><![CDATA[Projeto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="10" width="71" height="20" uuid="48e89a55-dc3a-4ab5-855f-656e3fc37063">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="057e3573-f588-4343-ad55-bd258ad83d77"/>
+				</reportElement>
+				<text><![CDATA[Hora Desconto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="10" width="70" height="20" uuid="ab60c689-5194-4155-a0ef-a2d0a02c25dd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f91f1eff-0352-41ca-b28f-07dc6733c89d"/>
+				</reportElement>
+				<text><![CDATA[Hora Traslado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="10" width="76" height="20" uuid="164849e7-d5cf-4b6c-a9bf-706ec293e682">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9942edfe-6812-4ad4-9a60-09c301c422c2"/>
+				</reportElement>
+				<text><![CDATA[Valor Hora]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="1" width="100" height="19" uuid="adca2dcb-da0d-416f-9a89-afb071e67399">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="edef8315-3d61-43e4-9692-ffe2d5601239"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="1" width="100" height="19" uuid="64206e30-d504-43e0-ab78-bb3b61b5fff1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="606403c6-95c4-40b4-a2e3-56f5a8fb7ccd"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="2" width="71" height="18" uuid="0dd7a906-2274-40e4-b560-f8a3d674033b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="057e3573-f588-4343-ad55-bd258ad83d77"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{horadesc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="2" width="70" height="18" uuid="fef0fdc4-2c19-451d-998e-31fc0bda099f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f91f1eff-0352-41ca-b28f-07dc6733c89d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{horatrasl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="2" width="75" height="18" uuid="77a8175b-be0a-44c7-a4d7-7869a63a57d5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9942edfe-6812-4ad4-9a60-09c301c422c2"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valorhora}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

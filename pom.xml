@@ -95,6 +95,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.16.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

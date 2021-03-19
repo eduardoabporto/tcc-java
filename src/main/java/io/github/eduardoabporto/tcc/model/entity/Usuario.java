@@ -30,4 +30,7 @@ public class Usuario {
     @Column(length = 150)
     private String nome;
 
+    @Column(length = 150)
+    private String perfil;
+
 }

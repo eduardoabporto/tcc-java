@@ -2,24 +2,25 @@ package io.github.eduardoabporto.tcc.rest;
 
 import io.github.eduardoabporto.tcc.model.entity.Cliente;
 import io.github.eduardoabporto.tcc.model.repository.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.github.eduardoabporto.tcc.service.ServiceRelatorio;
+import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
+@RequiredArgsConstructor
 public class ClienteController {
 
+    private final ServiceRelatorio serviceRelatorio;
     private final ClienteRepository repository;
-
-    @Autowired
-    public ClienteController(ClienteRepository repository) {
-        this.repository = repository;
-    }
 
     @GetMapping
     public List<Cliente> obterTodos(){
@@ -62,4 +63,15 @@ public class ClienteController {
                 })
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não Encontrado"));
     }
+
+    @GetMapping(value="/relatorio", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-clientes",
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
 }

@@ -74,4 +74,5 @@ public class Empresa {
     public void prePersist(){
         setDataCadastro(LocalDate.now());
     }
+
 }
