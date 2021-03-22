@@ -46,7 +46,7 @@ public class Cliente {
     @Column(length = 40)
     private String email;
 
-    @Column(length = 11)
+    @Column(length = 15)
     private String telefone;
 
     @Column(length = 70)
@@ -58,7 +58,7 @@ public class Cliente {
     @Column(length = 30)
     private String complemento;
 
-    @Column(length = 8)
+    @Column(length = 9)
     private String cep;
 
     @Column(length = 30)

@@ -24,8 +24,10 @@ public class EmpresaController {
     private final EmpresaRepository empresaRepository;
 
     @GetMapping
-    public List<Empresa> obterTodos(){
-        return empresaRepository.findAll();
+    public List<Empresa> pesquisar(
+            @RequestParam(value = "nome", required = false, defaultValue = "") String nome
+    ) {
+        return empresaRepository.findByNomeEmpresa("%" + nome + "%");
     }
 
     @PostMapping
