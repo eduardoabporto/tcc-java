@@ -17,6 +17,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(
                         "/api/empresa/**",
                         "/api/clientes/**",
+                        "/api/tipo-despesa/**",
+                        "/api/despesa/**",
                         "/api/ordem-servico/**",
                         "/api/recurso/**",
                         "/api/projeto/**"

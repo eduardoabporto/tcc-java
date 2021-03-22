@@ -35,7 +35,7 @@ public class UsuarioController {
     public List<Usuario> buscaUsuario(
             @RequestParam(value = "nomeUser" , required = false, defaultValue = "") String nomeUser
     ) {
-        return repository.findByNumCliente(nomeUser);
+        return repository.findByNomeUser(nomeUser);
     }
 
     @PostMapping
