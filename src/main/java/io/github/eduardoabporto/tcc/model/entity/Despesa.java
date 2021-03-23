@@ -45,4 +45,5 @@ public class Despesa {
 
     private String atendimento;
 
+    private String aprovacao;
 }

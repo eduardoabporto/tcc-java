@@ -44,4 +44,6 @@ public class OrdemServicoDTO {
 
     private String atendimento;
 
+    private String aprovacao;
+
 }

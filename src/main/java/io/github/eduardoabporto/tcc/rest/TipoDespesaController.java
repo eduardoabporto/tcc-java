@@ -24,8 +24,10 @@ public class TipoDespesaController {
     private final TipoDespesaRepository tipoDespesaRepository;
 
     @GetMapping
-    public List<TipoDespesa> obterTodos(){
-        return tipoDespesaRepository.findAll();
+    public List<TipoDespesa> pesquisar(
+            @RequestParam(value = "nome", required = false, defaultValue = "") String nome
+    ) {
+        return tipoDespesaRepository.findByNomeTipoDespesa("%" + nome + "%");
     }
 
     @PostMapping

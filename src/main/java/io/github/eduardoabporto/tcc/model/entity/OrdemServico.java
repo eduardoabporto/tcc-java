@@ -60,4 +60,6 @@ public class OrdemServico {
 
     private String atendimento;
 
+    private String aprovacao;
+
 }

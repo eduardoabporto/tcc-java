@@ -36,4 +36,6 @@ public class DespesaDTO {
 
     private String atendimento;
 
+    private String aprovacao;
+
 }
