@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio-despesas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa920983-7ca9-4385-bb53-bfae27298907">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco TCC - OS"/>
+	<parameter name="USUARIO_LOG" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT cli.nome nomecli, cli.pessoaresp, desp.data, usu.nome nomeuser, prj.nome nomeprj, TPDESP.nome nometipodesp, desp.descricao, desp.valordespesa
+FROM DESPESA DESP, EMPRESA EMP, CLIENTE CLI, PROJETO PRJ, USUARIO USU, TIPODESPESA TPDESP
+WHERE
+DESP.EMPRESA_ID = EMP.ID
+AND DESP.CLIENTE_ID = CLI.ID
+AND DESP.PROJETO_ID = PRJ.ID
+AND DESP.USERLOG = USU.USERNAME
+AND DESP.TIPODESPESA_ID = TPDESP.ID
+]]>
+	</queryString>
+	<field name="nomecli" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomecli"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomecli"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="pessoaresp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pessoaresp"/>
+		<property name="com.jaspersoft.studio.field.label" value="pessoaresp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="data" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="data"/>
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="despesa"/>
+	</field>
+	<field name="nomeuser" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeuser"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomeuser"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario"/>
+	</field>
+	<field name="nomeprj" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeprj"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomeprj"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="projeto"/>
+	</field>
+	<field name="nometipodesp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nometipodesp"/>
+		<property name="com.jaspersoft.studio.field.label" value="nometipodesp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipodespesa"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="despesa"/>
+	</field>
+	<field name="valordespesa" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="valordespesa"/>
+		<property name="com.jaspersoft.studio.field.label" value="valordespesa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="despesa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="-3" y="7" width="801" height="40" uuid="61de8452-5e8b-4e12-96f5-882b308f4d8a"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE DESPESAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="801" height="39" backcolor="#B5B5B5" uuid="26d4d7ba-cb94-4b46-a605-b6f91a6436c1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="3" width="212" height="30" uuid="a16b3e3d-b411-44ca-b67b-a8aa0a8cde64">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a2df875-a41f-40fc-a551-0875368ee99b"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="3" width="95" height="30" uuid="976d270e-c36a-4e98-9cbb-656ce93e2b9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61867824-b547-4195-9509-74ebc7f3ec58"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Projeto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="3" width="95" height="30" uuid="6b5561c0-680d-4c9e-a60c-a71d814db343">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="92c84634-8b2c-4120-abcc-9e08c1dc8ba3"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Despesa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="3" width="70" height="30" uuid="1980c069-791a-430c-98a6-43e7e1b15d60">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da7d3664-8498-439b-9b66-ce0b9cc0e006"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="519" y="3" width="95" height="30" uuid="16639c58-bcea-4c4a-af9c-aa874f03e1cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1d27210-44a5-411c-8448-a8bcbc988382"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Despesa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="625" y="3" width="75" height="30" uuid="6873b609-d77c-42ef-be9e-200cdfa81e67">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aebcb5d5-5c4a-49c9-9830-35d3ca17f2da"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Resp. Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="708" y="3" width="90" height="30" uuid="2d9fa91f-dec5-41e8-8f5f-3c04daf47447">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39ec1dea-e193-4cee-9cbd-dfaf1693a14e"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Consultor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="3" width="212" height="16" uuid="1cca9f3d-1d1f-40c6-9d2b-63a4402037a7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="609a34c3-6d9e-45e6-86d8-ebc133605650"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomecli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="3" width="95" height="16" uuid="e3e70746-b113-489b-a885-8988133d4938">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="64645b5d-1868-45aa-a1ae-cef7fc7c9160"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomeprj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="3" width="95" height="16" uuid="5acf5673-2043-43e7-9380-f6d655082e32">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="550c3a83-ec4e-4e20-8f7d-f0884044d305"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nometipodesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="3" width="70" height="16" uuid="ec47b3d5-01bf-4a7b-9c07-6d0ec496ded2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bef69dd7-fea1-485a-8329-d376d071758a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{data})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="519" y="3" width="95" height="16" uuid="aa4d291b-fee0-44d0-aa00-28f3cbb41fca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1d27210-44a5-411c-8448-a8bcbc988382"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valordespesa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="625" y="3" width="75" height="16" uuid="ffc12ddb-04ae-49fa-9b26-bd75474bd230">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aebcb5d5-5c4a-49c9-9830-35d3ca17f2da"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{pessoaresp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="708" y="3" width="93" height="16" uuid="f167f25a-03f9-411a-bb55-9b4d77b43e99">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39ec1dea-e193-4cee-9cbd-dfaf1693a14e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomeuser}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

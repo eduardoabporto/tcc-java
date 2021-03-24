@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/despesa")
@@ -121,7 +122,7 @@ public class DespesaController {
 
     @GetMapping(value="/relatorio", produces = "application/text")
     public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
-        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-despesa", new HashMap(),
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-despesas", new HashMap(),
                 request.getServletContext());
 
         String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
@@ -130,9 +131,31 @@ public class DespesaController {
     }
 
 
-    @GetMapping(value="/relatorio/minhas-despesas", produces = "application/text")
-    public ResponseEntity<String> downloadRelatorioMinhasOss(HttpServletRequest request) throws Exception {
-        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-minha-despesas", new HashMap(),
+    @PostMapping(value="/relatorio/", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorioParam(HttpServletRequest request,
+            @RequestBody String userReport) throws Exception {
+
+        Map<String,Object> params = new HashMap<String,Object>();
+
+        params.put("USUARIO_LOG", userReport);
+
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-minha-despesa", params,
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
+    @PostMapping(value="/relatorio/despesas", produces = "application/text")
+    public ResponseEntity<String> downloadFormDespesasParam(HttpServletRequest request,
+                                                      @RequestBody Integer idDespesas) throws Exception {
+
+        Map<String,Object> params = new HashMap<String,Object>();
+
+        params.put("DESP_PARAMS", idDespesas);
+
+        byte[] pdf = serviceRelatorio.gerarRelatorio("Form-Despesa", params,
                 request.getServletContext());
 
         String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
