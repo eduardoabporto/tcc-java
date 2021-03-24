@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -66,7 +67,7 @@ public class ClienteController {
 
     @GetMapping(value="/relatorio", produces = "application/text")
     public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
-        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-clientes",
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-clientes", new HashMap(),
                 request.getServletContext());
 
         String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);

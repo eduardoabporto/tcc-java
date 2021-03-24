@@ -19,7 +19,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ordem-servico")
@@ -121,7 +123,7 @@ public class OrdemServicoController {
 
     @GetMapping(value="/relatorio", produces = "application/text")
     public ResponseEntity<String> downloadRelatorio(HttpServletRequest request) throws Exception {
-        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-ordens-servicos",
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-ordens-servicos", new HashMap(),
                 request.getServletContext());
 
         String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
@@ -129,10 +131,31 @@ public class OrdemServicoController {
         return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
     }
 
+    @PostMapping(value="/relatorio/", produces = "application/text")
+    public ResponseEntity<String> downloadRelatorioParam(HttpServletRequest request,
+        @RequestBody String userReport) throws Exception {
 
-    @GetMapping(value="/relatorio/minhas-oss", produces = "application/text")
-    public ResponseEntity<String> downloadRelatorioMinhasOss(HttpServletRequest request) throws Exception {
-        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-minha-os",
+        Map<String,Object> params = new HashMap<String,Object>();
+
+        params.put("USUARIO_LOG", userReport);
+
+        byte[] pdf = serviceRelatorio.gerarRelatorio("relatorio-minha-os", params,
+                request.getServletContext());
+
+        String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);
+
+        return new ResponseEntity<String>(base64Pdf, HttpStatus.OK);
+    }
+
+    @PostMapping(value="/relatorio/os", produces = "application/text")
+    public ResponseEntity<String> downloadFormOSParam(HttpServletRequest request,
+                                                         @RequestBody Integer idOS) throws Exception {
+
+        Map<String,Object> params = new HashMap<String,Object>();
+
+        params.put("OS_PARAMS", idOS);
+
+        byte[] pdf = serviceRelatorio.gerarRelatorio("Form-Ordem-Servico", params,
                 request.getServletContext());
 
         String base64Pdf = "data:application/pdf;base64," + Base64.encodeBase64String(pdf);

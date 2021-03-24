@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Connection;
-import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ServiceRelatorio implements Serializable {
@@ -21,14 +21,14 @@ public class ServiceRelatorio implements Serializable {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public byte[] gerarRelatorio (String nomeRelatorio, ServletContext servletContext) throws Exception {
+    public byte[] gerarRelatorio (String nomeRelatorio, Map<String,Object> params, ServletContext servletContext) throws Exception {
 
         Connection connection = jdbcTemplate.getDataSource().getConnection();
 
         String caminhoJasper = servletContext.getRealPath("/relatorio")
                 + File.separator + nomeRelatorio + ".jasper";
 
-        JasperPrint print = JasperFillManager.fillReport(caminhoJasper, new HashMap(), connection);
+        JasperPrint print = JasperFillManager.fillReport(caminhoJasper, params, connection);
 
         byte [] retorno = JasperExportManager.exportReportToPdf(print);
 
