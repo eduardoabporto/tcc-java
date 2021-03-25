@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -19,7 +19,7 @@ public class OrdemServico {
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date data;
+    private LocalDate data;
 
     @Column(nullable = false, length = 500)
     private String descricao;

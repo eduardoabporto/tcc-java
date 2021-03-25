@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio-tipo-despesa" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa920983-7ca9-4385-bb53-bfae27298907">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Banco TCC - OS"/>
+	<queryString>
+		<![CDATA[SELECT id, nome
+FROM TIPODESPESA TPDESP
+]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipodespesa"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipodespesa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="-3" y="7" width="801" height="40" uuid="61de8452-5e8b-4e12-96f5-882b308f4d8a"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE TIPOS DE DESPESAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="801" height="39" backcolor="#B5B5B5" uuid="26d4d7ba-cb94-4b46-a605-b6f91a6436c1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="229" y="3" width="100" height="30" uuid="9b828f85-fe97-47c6-ab42-070e41780eba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9ac22c9f-b39f-4217-8821-c867cdc48ce9"/>
+				</reportElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="3" width="100" height="30" uuid="1560f239-f255-4315-86bc-307a5de54df0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="888e4541-9fb1-44b3-86da-fefd2e66a8fa"/>
+				</reportElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="229" y="3" width="100" height="17" uuid="59035bfe-bb81-4c7a-8269-aa98e4e75ca5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9ac22c9f-b39f-4217-8821-c867cdc48ce9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="3" width="360" height="17" uuid="8838eaec-3e3e-4b58-a1fc-9e12ec35dc4b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="888e4541-9fb1-44b3-86da-fefd2e66a8fa"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

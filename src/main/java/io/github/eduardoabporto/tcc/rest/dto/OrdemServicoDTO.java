@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +14,7 @@ public class OrdemServicoDTO {
     private String assunto;
 
     //   @NotEmpty(message = "{campo.data.obrigatorio}")
-    private Date data;
+    private LocalDate data;
 
     @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;

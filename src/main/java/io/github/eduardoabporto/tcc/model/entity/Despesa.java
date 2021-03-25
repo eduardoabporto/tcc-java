@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -17,7 +17,7 @@ public class Despesa {
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date data;
+    private LocalDate data;
 
     @Column(nullable = false, length = 500)
     private String descricao;
