@@ -27,7 +27,7 @@ public class Config {
 
         ds.username("postgres");
         ds.password("Fusc@1984");
-        ds.url("jdbc:postgresql://localhost:5432/tcc_os");
+        ds.url("${JDBC_DATASOURCE_URL}");
         ds.driverClassName("org.postgresql.Driver");
 /*
         ds.username("sa");
