@@ -32,14 +32,14 @@ public class RecursoController {
         return recursoRepository.save(recurso);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Recurso acharPorId(@PathVariable Integer id){
         return recursoRepository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Recurso não Encontrado"));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         recursoRepository
@@ -51,7 +51,7 @@ public class RecursoController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Recurso não Encontrado"));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Recurso recursoAtualizado){
         recursoRepository

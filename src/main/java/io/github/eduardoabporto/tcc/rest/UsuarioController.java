@@ -60,14 +60,14 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Usuario acharPorId(@PathVariable Integer id){
         return  repository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuãrio não Encontrado"));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Usuario UsuarioAtualizado){
         repository

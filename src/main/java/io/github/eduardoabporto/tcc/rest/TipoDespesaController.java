@@ -37,14 +37,14 @@ public class TipoDespesaController {
         return tipoDespesaRepository.save(tipoDespesa);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public TipoDespesa acharPorId(@PathVariable Integer id){
         return tipoDespesaRepository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Tipo de Despesa não Encontrada"));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         tipoDespesaRepository
@@ -56,7 +56,7 @@ public class TipoDespesaController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Tipo de Despesa não Encontrado"));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody TipoDespesa TipoDespesaAtualizado){
         tipoDespesaRepository

@@ -89,14 +89,14 @@ public class DespesaController {
         return despesaRepository.findByNomeCliente("%" + nome + "%");
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Despesa acharPorId(@PathVariable Integer id){
         return despesaRepository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Despesa não Encontrada"));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         despesaRepository
@@ -108,7 +108,7 @@ public class DespesaController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Despesa não Encontrada"));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Despesa despesaAtualizado){
         despesaRepository
