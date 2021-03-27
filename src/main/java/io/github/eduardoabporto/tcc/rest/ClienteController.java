@@ -34,14 +34,14 @@ public class ClienteController {
         return repository.save(cliente);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Cliente acharPorId(@PathVariable Integer id){
         return repository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não Encontrado"));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         repository
@@ -53,7 +53,7 @@ public class ClienteController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não Encontrado"));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado){
         repository

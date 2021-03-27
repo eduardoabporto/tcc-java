@@ -60,7 +60,7 @@ public class ProjetoController {
         return projetoRepository.findByNomeCliente("%" + nome + "%");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Projeto acharPorId(@PathVariable Integer id){
         return projetoRepository
                 .findById(id)
@@ -81,7 +81,7 @@ public class ProjetoController {
         return projetoRepository.findByNumCliente(Integer.parseInt(numCliente));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         projetoRepository
@@ -93,7 +93,7 @@ public class ProjetoController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Projeto não Encontrado"));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Projeto projetoAtualizado){
         projetoRepository

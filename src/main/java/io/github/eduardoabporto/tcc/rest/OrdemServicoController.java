@@ -90,14 +90,14 @@ public class OrdemServicoController {
         return repository.findByNomeCliente("%" + nome + "%");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public OrdemServico acharPorId(@PathVariable Integer id){
         return repository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         repository
@@ -109,7 +109,7 @@ public class OrdemServicoController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Ordem de Serviço não Encontrado"));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody OrdemServico ordemServicoAtualizado){
         repository

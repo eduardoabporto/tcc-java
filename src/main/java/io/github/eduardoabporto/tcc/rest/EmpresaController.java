@@ -37,14 +37,14 @@ public class EmpresaController {
         return empresaRepository.save(empresa);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Empresa acharPorId(@PathVariable Integer id){
         return empresaRepository
                 .findById(id)
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Empresa não Encontrado"));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
         empresaRepository
@@ -56,7 +56,7 @@ public class EmpresaController {
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Empresa não Encontrado"));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody Empresa EmpresaAtualizado){
         empresaRepository
